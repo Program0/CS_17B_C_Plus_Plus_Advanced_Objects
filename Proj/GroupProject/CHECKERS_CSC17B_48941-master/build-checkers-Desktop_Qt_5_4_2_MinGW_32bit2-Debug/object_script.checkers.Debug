@@ -1,0 +1,14 @@
+INPUT(
+./debug/main.o
+./debug/board.o
+./debug/boardsquare.o
+./debug/mainwindow.o
+./debug/menu.o
+./debug/menudialog.o
+./debug/qrc_checkers.o
+./debug/moc_board.o
+./debug/moc_boardsquare.o
+./debug/moc_mainwindow.o
+./debug/moc_menu.o
+./debug/moc_menudialog.o
+);

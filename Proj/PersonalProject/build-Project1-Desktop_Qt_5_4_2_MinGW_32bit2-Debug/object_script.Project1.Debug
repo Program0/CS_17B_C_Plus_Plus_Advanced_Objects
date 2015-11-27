@@ -1,0 +1,12 @@
+INPUT(
+./debug/main.o
+./debug/guessentry.o
+./debug/playspace.o
+./debug/newgamedialog.o
+./debug/logindialog.o
+./debug/qrc_codebreaker.o
+./debug/moc_guessentry.o
+./debug/moc_playspace.o
+./debug/moc_newgamedialog.o
+./debug/moc_logindialog.o
+);

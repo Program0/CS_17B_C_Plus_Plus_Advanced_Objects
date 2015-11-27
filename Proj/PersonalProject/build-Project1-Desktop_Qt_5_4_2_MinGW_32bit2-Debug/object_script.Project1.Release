@@ -1,0 +1,12 @@
+INPUT(
+./release/main.o
+./release/guessentry.o
+./release/playspace.o
+./release/newgamedialog.o
+./release/logindialog.o
+./release/qrc_codebreaker.o
+./release/moc_guessentry.o
+./release/moc_playspace.o
+./release/moc_newgamedialog.o
+./release/moc_logindialog.o
+);

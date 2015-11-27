@@ -1,0 +1,21 @@
+Notes CSC18B 09-30-2015
+
+Chapter 3 project involves many of the processes that we will use for our personal and group projects. The Chapter 3 project remembers settings and loads settings. In this app we are using our own open dialog the system open dialog etc. If we understand this application we can write our own.
+
+NOTE: there are private slots: , private, and public in the header. 
+
+The only widget we utilize in the main window is the spreadsheet. We create the statusBar, toolBars, ContextMenu, readSettings, etc. 
+
+/*NEED to modify Qt3 Spreadsheet. add includes to resolve compilation issues. (We added QT+= widgets which fixed some issues)*/
+
+Look at find() dialog [we created in previous class]. In here we hook up slots and signals. We have connect(findDialog, SIGNAL(findNext(const QString &, Qt::CaseSensitivity)),spreadsheet, SLOT(findNext(const Qstring &, Qt::CaseSensitivity)));
+
+Also note the sort, about, goToCell functions. Note the status bar where it tells you the current cell and the information you typed in. 
+
+The createActions() function is fairly important. Every menu element must have a menu action option associated with it. In the header we declared the action and we defined it in the mainwindow.cpp. We still have to write the functions though.
+
+Note how the createMenus() function is created. This is exactly how the menu appears in the main window. How you add them is how they are displayed. fileMenu is a QMenu item. you add onto it. You don't have to, but it does affect the display. Look at selectSubMenu also. It has individual actions. It has submenus. You can add menus to submenus.
+
+If you understand this, you can create any application.
+
+NEXT WEEK: Need prototype of personal and group project main, dialog, and menu windows!
