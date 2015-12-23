@@ -3,7 +3,6 @@
 
 #include <QDialog>
 #include <QRegularExpression> // For testing regular expressions
-//#include <QRegExpValidator>
 #include <QRegularExpressionValidator>
 #include <QLabel>
 #include <QLineEdit>
@@ -11,19 +10,29 @@
 #include <QDialogButtonBox>
 #include <QGridLayout>
 
+#include <QSql>
+#include <QSqlQuery>
+#include <QSqlDatabase>
+
+
+
+#include "user.h"
+#include "connection.h"
+
 class LoginDialog : public QDialog
 {
     Q_OBJECT
 
 public:
-    explicit LoginDialog(QWidget *parent = 0);
+    explicit LoginDialog(const Connection& connection,QWidget *parent = 0);
     //~LoginDialog();
 
 private slots:
     //void checkUserPassword();
 
 signals:
-    void acceptLogin(QString& username, QString& password, unsigned int& indexNumber);
+    void acceptLogin(User);
+    void loginSuccess(bool);
 
 public slots:
     void slotAcceptLogin(bool);
@@ -35,7 +44,7 @@ private:
     QLineEdit *passwordLine;
     QCheckBox *rememberCheckBox;
     QDialogButtonBox *buttonBox;
-
+    Connection currentConnection;
 };
 
 #endif // LOGINDIALOG_H

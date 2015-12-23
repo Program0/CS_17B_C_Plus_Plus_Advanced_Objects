@@ -23,16 +23,16 @@ SOURCES += main.cpp\
     newuserdialog.cpp \
     game.cpp \
     mainwindow.cpp \
-    computer.cpp
+    computer.cpp \
+    newgamedialog.cpp \
+    player.cpp
 
 HEADERS  += \
     guessentry.h \
     playspace.h \
-    stack.h \
     empty.h \
     invalidargument.h \
     list.h \
-    queue.h \
     logindialog.h \
     codedialog.h \
     guessscene.h \
@@ -42,7 +42,13 @@ HEADERS  += \
     newuserdialog.h \
     guess.h \
     mainwindow.h \
-    computer.h
+    computer.h \
+    newgamedialog.h \
+    connection.h \
+    queue.h \
+    stack.h \
+    tree.h \
+    player.h
 
 FORMS    += \
     newuserdialog.ui

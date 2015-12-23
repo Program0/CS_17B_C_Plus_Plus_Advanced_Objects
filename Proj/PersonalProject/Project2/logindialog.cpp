@@ -5,9 +5,12 @@
 #include "logindialog.h"
 
 
-LoginDialog::LoginDialog(QWidget *parent) :
+LoginDialog::LoginDialog(const Connection& connection, QWidget *parent) :
     QDialog(parent)
 {
+    // Set the connection to test
+    currentConnection = connection;
+
     // Regular expressions to check valid user name and input
     QRegularExpression userExp("^[a-zA-Z0-9_@.-]{3,15}$");
     QRegularExpression passwordExp("^((?=.*[0-9])(?=.*[a-zA-Z])[a-zA-Z0-9!@#$%&*]{6,20})$");
@@ -19,6 +22,7 @@ LoginDialog::LoginDialog(QWidget *parent) :
     // Set up up the validators for the user and password lines
     userNameLine->setValidator(new QRegularExpressionValidator(userExp,this));
     passwordLine->setValidator(new QRegularExpressionValidator(passwordExp,this));
+    passwordLine->setEchoMode(QLineEdit::Password);
 
     // Set the password line so that it does not show characters
    // passwordLine->setEchoMode(QLineEdit::Password);
@@ -59,6 +63,45 @@ LoginDialog::LoginDialog(QWidget *parent) :
 
 void LoginDialog::slotAcceptLogin(bool){
     QMessageBox msgBx;
-    msgBx.setText("Pressed Ok");
-    msgBx.exec();
+    if(currentConnection.connected){
+        QSqlQuery query;
+        unsigned int userId ;
+        QString name;
+        QString passP;
+        QString first;
+        QString last;
+        QString middle;
+        QString emailAddress;
+        QDate birth;
+
+        query.exec("SELECT user_id, user_name, password, first_name, last_name, middle_name, email, birthdate FROM users");
+        while (query.next()) {
+            userId = query.value(0).toUInt();
+            name = query.value(1).toString();
+            passP = query.value(2).toString();
+            first = query.value(3).toString();
+            last = query.value(4).toString();
+            middle = query.value(5).toString();
+            emailAddress = query.value(6).toString();
+            birth = query.value(7).toDate();
+        }
+
+        if(name!=userNameLine->text()|| passP!=passwordLine->text()){
+            msgBx.setText("Error: Please enter a valid username and password");
+            msgBx.exec();
+            emit loginSuccess(false);
+        }
+        else{
+            User currentUser(userId,first,middle,last,name,passP,emailAddress,birth);
+            emit acceptLogin(currentUser);
+            emit loginSuccess(true);
+        }
+
+        currentConnection.db.close();
+    }
+    else{
+        msgBx.setText("Not connected to server");
+        msgBx.exec();
+    }
+
 }

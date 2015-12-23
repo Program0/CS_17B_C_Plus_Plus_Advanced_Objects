@@ -62,7 +62,7 @@ Board::~Board(){
     QMap<int,BoardSquare*>::iterator i=playableSquares.begin();
     QMap<int,BoardSquare*>::iterator j=nonPlayableSquares.begin();
 
-    // Now iterate through both maps and delete each key-value pair
+	// delete the playable and non playable squares
     while(i!=playableSquares.end()){
         // Delete the BoardSquare value
         delete i.value();
@@ -75,4 +75,7 @@ Board::~Board(){
         // Now delete the key
         j=nonPlayableSquares.erase(j);
     }
+	// Now delete the Qmaps
+    delete playableSquares;
+    delete nonPlayableSquares;
 }

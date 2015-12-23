@@ -16,7 +16,8 @@ SOURCES += main.cpp\
     guessentry.cpp \
     playspace.cpp \
     newgamedialog.cpp \
-    logindialog.cpp
+    logindialog.cpp \
+    mainwindow.cpp
 
 HEADERS  += \
     guessentry.h \
@@ -27,7 +28,8 @@ HEADERS  += \
     list.h \
     queue.h \
     newgamedialog.h \
-    logindialog.h
+    logindialog.h \
+    mainwindow.h
 
 FORMS    +=
 
