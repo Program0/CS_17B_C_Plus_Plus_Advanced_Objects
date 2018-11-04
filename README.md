@@ -1,2 +1,2 @@
-# ZerothMarlo_CSC17B
-Riverside City College advanced objects using c++
+# CS 17B c++ Advanced Objects
+Riverside City College course on advanced objects using c++ and the qt framework.
